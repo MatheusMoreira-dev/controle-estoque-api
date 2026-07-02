@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
@@ -21,4 +20,9 @@ public class Setor implements Serializable {
 
     @OneToMany(mappedBy = "setor")
     private List<Funcionario> funcionarios;
+
+    public Setor(Long id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
 }
