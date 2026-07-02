@@ -1,7 +1,10 @@
 package br.com.matheus.controleestoque.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,22 +15,18 @@ import java.util.List;
 @EqualsAndHashCode(of = "id")
 
 @Entity
-@Table(name = "funcionario")
-public class Funcionario implements Serializable {
+@Table(name = "deposito")
+public class Deposito implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
 
-    @ManyToOne
-    private Setor setor;
+    @OneToMany(mappedBy = "")
+    private List<Item> movimentacoes;
 
-    @OneToMany(mappedBy = "funcionarioResponsavel")
-    private List<Item> itens;
-
-    public Funcionario(Long id, String nome, Setor setor) {
+    public Deposito(Long id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.setor = setor;
     }
 }
