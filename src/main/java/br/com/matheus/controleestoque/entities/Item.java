@@ -1,6 +1,7 @@
 package br.com.matheus.controleestoque.entities;
 
 import jakarta.persistence.*;
+import jdk.dynalink.linker.LinkerServices;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -29,6 +31,9 @@ public class Item implements Serializable {
 
     @ManyToOne
     private Categoria categoria;
+
+    @OneToMany(mappedBy = "item")
+    private List<Movimentacao> movimentacoes;
 
     public Item(Long id, String nome, String descricao, LocalDateTime dataRegistro, Funcionario funcionarioResponsavel, Categoria categoria) {
         this.id = id;

@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(of = "id")
 
 @Entity
-@Table(name = "movimentacoes")
+@Table(name = "movimentacao")
 public class Movimentacao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +23,15 @@ public class Movimentacao implements Serializable {
     private LocalDateTime dataRegistro;
     private LocalDateTime dataVencimento;
 
+    @Enumerated(EnumType.STRING)
     private TipoMovimentacao tipoMovimentacao;
 
+    @ManyToOne
     private Funcionario funcionarioResponsavel;
+
+    @ManyToOne
     private Deposito deposito;
+
+    @ManyToOne
     private Item item;
 }

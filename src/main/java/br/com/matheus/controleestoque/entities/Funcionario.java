@@ -23,7 +23,10 @@ public class Funcionario implements Serializable {
     private Setor setor;
 
     @OneToMany(mappedBy = "funcionarioResponsavel")
-    private List<Item> itens;
+    private List<Item> itensRegistrados;
+
+    @OneToMany(mappedBy = "funcionarioResponsavel")
+    private List<Movimentacao> movimentacoes;
 
     public Funcionario(Long id, String nome, Setor setor) {
         this.id = id;
