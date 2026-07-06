@@ -1,5 +1,6 @@
 package br.com.matheus.controleestoque;
 
+import br.com.matheus.controleestoque.repositories.ItemRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
