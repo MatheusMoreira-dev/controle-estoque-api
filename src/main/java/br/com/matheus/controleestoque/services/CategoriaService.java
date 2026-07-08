@@ -35,7 +35,7 @@ public class CategoriaService {
 
     public Categoria update(Categoria categoria){
         if(!repository.existsById(categoria.getId())){
-            throw new RuntimeException("Não há nenhuma categoria cadastrada com esse Id!");
+            return null;
         }
 
         return repository.save(categoria);

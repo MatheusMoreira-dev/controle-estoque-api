@@ -6,6 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping(value = "/categorias")
 public class CategoriaController {
@@ -24,5 +27,31 @@ public class CategoriaController {
     public ResponseEntity<Void> delete(Long id){
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Categoria> getById(@PathVariable Long id){
+        Optional<Categoria> categoria = service.getById(id);
+
+        if(categoria.isEmpty())
+            return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(categoria.get());
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Categoria>> getAll(){
+        return ResponseEntity.ok(service.getAll());
+    }
+
+    @PatchMapping
+    public ResponseEntity<Categoria> patch(@RequestBody Categoria categoria){
+        Categoria updateCategoria = service.update(categoria);
+
+        if(updateCategoria == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(updateCategoria);
     }
 }
