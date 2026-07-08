@@ -23,7 +23,7 @@ public class Deposito implements Serializable {
     private String nome;
 
     @OneToMany(mappedBy = "deposito")
-    private List<Item> movimentacoes;
+    private List<Movimentacao> movimentacoes;
 
     public Deposito(Long id, String nome) {
         this.id = id;
