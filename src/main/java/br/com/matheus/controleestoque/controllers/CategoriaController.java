@@ -44,8 +44,9 @@ public class CategoriaController {
         return ResponseEntity.ok(service.getAll());
     }
 
-    @PatchMapping
-    public ResponseEntity<Categoria> patch(@RequestBody Categoria categoria){
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Categoria> patch(@PathVariable Long id, @RequestBody Categoria categoria){
+        categoria.setId(id);
         Categoria updateCategoria = service.update(categoria);
 
         if(updateCategoria == null){
